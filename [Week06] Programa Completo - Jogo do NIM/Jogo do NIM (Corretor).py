@@ -2,7 +2,7 @@ def usuario_escolhe_jogada(n, m):
     rmv_piece = m
     rmv_piece = int(input("Quantas peças você vai tirar? "))
     
-    while rmv_piece > m or rmv_piece > n or rmv_piece <= 0:
+    while (0 >= rmv_piece > m):
         print("Oops! Jogada inválida! Tente de novo.")
         rmv_piece = int(input("Quantas peças você vai tirar? "))
 
