@@ -21,10 +21,10 @@ def computador_escolhe_jogada(n, m):
     while rmv_piece >= 0:
         winner_strategy = (n-rmv_piece) % (m+1)
         if winner_strategy == 0:
-            print("o computador tirou", m, "peças")
+            print("o computador tirou", rmv_piece, "peças")
             return rmv_piece
 
-        rmv_piece = rmv_piece - 1
+        rmv_piece -= 1
         if rmv_piece == 0:
             print("o computador tirou", m, "peças")
             return m
@@ -69,9 +69,13 @@ def computador_comeca(n,m):
         print(f"Agora restam {n} peças no tabuleiro")
         
 def partida(n, m):
-    n = int(input("Quantas peças? "))
-    m = int(input("Limite de peças por jogada? "))
-
+    n = 0
+    m = 1
+    while m >= n:
+        print("O limite de peças por jogada não pode ser maior ou igual a quantidade de peças no jogo")
+        n = int(input("Quantas peças? "))
+        m = int(input("Limite de peças por jogada? "))
+        
     who_starts = n % (m+1)
     if who_starts == 0:
         print("Você começa!")
@@ -83,13 +87,9 @@ def partida(n, m):
 
 def campeonato(n, m):  # FAZ ISSO OUTRO DIA!!!!!!!!
     PC = User = 0
-    game_1 = partida(n, m)
-    game_2 = partida(n, m)
-    game_3 = partida(n, m)
+    games = [partida(n,m) for i in range(3)]
 
-    lista = [game_1, game_2, game_3]
-
-    for Pc_won in lista:
+    for Pc_won in games:
         if Pc_won:
             PC += 1
         else:
