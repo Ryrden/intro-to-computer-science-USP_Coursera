@@ -34,33 +34,25 @@ def computador_escolhe_jogada(n, m):
         print("Fim do jogo! O computador ganhou!")
     return rmv_piece
 
+def usuario_comeca(n,m):
+    while 1:
+        User_rmv_piece = usuario_escolhe_jogada(n, m)
+        n -= User_rmv_piece
+        if n == 0:
+            print("Fim do jogo! Você ganhou!")
+            return False
+        print(f"Agora restam {n} peças no tabuleiro")
 
-def partida(n, m):
-    n = int(input("Quantas peças? "))
-    m = int(input("Limite de peças por jogada? "))
+        Pc_rmv_piece = computador_escolhe_jogada(n, m)
+        n -= Pc_rmv_piece
+        if n == 0:
+            print("Fim do jogo! O computador ganhou!")
+            return True
 
-    who_stars = n % (m+1)
-    if who_stars == 0:
-        print("Você começa!")
-        while 1:
-            User_rmv_piece = usuario_escolhe_jogada(n, m)
-            n -= User_rmv_piece
-            if n == 0:
-                print("Fim do jogo! Você ganhou!")
-                return False
-            print(f"Agora restam {n} peças no tabuleiro")
+        print(f"Agora restam {n} peças no tabuleiro")
 
-            Pc_rmv_piece = computador_escolhe_jogada(n, m)
-            n -= Pc_rmv_piece
-            if n == 0:
-                print("Fim do jogo! O computador ganhou!")
-                return True
-
-            print(f"Agora restam {n} peças no tabuleiro")
-
-    print("Computador começa!")
-    valid = True
-    while valid:
+def computador_comeca(n,m):
+    while 1:
         Pc_rmv_piece = computador_escolhe_jogada(n, m)
         n -= Pc_rmv_piece
         if n == 0:
@@ -75,6 +67,18 @@ def partida(n, m):
             return False
 
         print(f"Agora restam {n} peças no tabuleiro")
+        
+def partida(n, m):
+    n = int(input("Quantas peças? "))
+    m = int(input("Limite de peças por jogada? "))
+
+    who_starts = n % (m+1)
+    if who_starts == 0:
+        print("Você começa!")
+        return usuario_comeca(n,m)
+    else:
+        print("Computador começa!")
+        return computador_comeca(n,m)
 
 
 def campeonato(n, m):  # FAZ ISSO OUTRO DIA!!!!!!!!
